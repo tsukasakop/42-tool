@@ -6,7 +6,7 @@
 /*   By: tkondo <tkondo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 03:43:35 by tkondo            #+#    #+#             */
-/*   Updated: 2024/01/19 04:17:13 by tkondo           ###   ########.fr       */
+/*   Updated: 2024/01/19 06:00:32 by tkondo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,13 @@
 
 char	*ft_strstr(char *str, char *to_find)
 {
+	char *s1;
+	char *s2;
+
 	if (*to_find == '\0')
-		return (char *)str;
+		return (str);
 	while (*str != '\0')
-	{ 
-		char	*s1;
-		char	*s2;
-		
+	{
 		s1 = str;
 		s2 = to_find;
 		while (*s1 == *s2 && *s1 != '\0')
@@ -37,17 +37,17 @@ char	*ft_strstr(char *str, char *to_find)
 /*
 #include <stdio.h>
 
-int main() {
-    char str[] = "Hello, World!";
-    char to_find[] = "Wqorld";
+int	main(void) {
+	char str[] = "Hello, World!";
+	char to_find[] = "Wqorld";
 
-    char *result = ft_strstr(str, to_find);
+	char *result = ft_strstr(str, to_find);
 
-    if (result != NULL) {
-        printf("Substring found at index: %ld\n", result - str);
-    } else {
-        printf("Substring not found\n");
-    }
+	if (result != NULL) {
+		printf("Substring found at index: %ld\n", result - str);
+	} else {
+		printf("Substring not found\n");
+	}
 
-    return 0;
+	return (0);
 }//*/

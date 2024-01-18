@@ -6,7 +6,7 @@
 /*   By: tkondo <tkondo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 03:07:29 by tkondo            #+#    #+#             */
-/*   Updated: 2024/01/19 03:09:39 by tkondo           ###   ########.fr       */
+/*   Updated: 2024/01/19 05:56:09 by tkondo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,12 @@ int	ft_strcmp(char *s1, char *s2)
 /*
 #include <stdio.h>
 
-int main() {
-    char str1[] = "Hello";
-    char str2[] = "Hell";
-    int result = ft_strcmp(str1, str2);
+int	main(void) {
+	char str1[] = "Hello";
+	char str2[] = "Hell";
+	int result = ft_strcmp(str1, str2);
 
-    printf("Comparison result: %d\n", result);
+	printf("Comparison result: %d\n", result);
 
-    return 0;
+	return (0);
 }//*/

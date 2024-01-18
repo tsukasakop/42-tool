@@ -6,14 +6,15 @@
 /*   By: tkondo <tkondo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 03:15:43 by tkondo            #+#    #+#             */
-/*   Updated: 2024/01/19 04:53:41 by tkondo           ###   ########.fr       */
+/*   Updated: 2024/01/19 05:46:26 by tkondo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 char	*ft_strncat(char *dest, char *src, unsigned int nb)
 {
-	char *ptr = dest;
+	char	*ptr;
 
+	ptr = dest;
 	while (*ptr != '\0')
 		ptr++;
 	while (*src != '\0' && nb > 0)
@@ -28,13 +29,14 @@ char	*ft_strncat(char *dest, char *src, unsigned int nb)
 }
 /*
 #include <stdio.h>
-int main() {
-    char dest[20] = "Hello";
-    char src[] = ", World!";
 
-    ft_strncat(dest, src, 5);
+int	main(void) {
+	char dest[20] = "Hello";
+	char src[] = ", World!";
 
-    printf("Concatenated string: %s\n", dest);
+	ft_strncat(dest, src, 5);
 
-    return 0;
+	printf("Concatenated string: %s\n", dest);
+
+	return (0);
 }//*/

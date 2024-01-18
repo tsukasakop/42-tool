@@ -13,8 +13,8 @@
 unsigned int	ft_strlcat(char *dest, char *src, unsigned int size)
 {
 	unsigned int	dest_len;
-	unsigned int 	src_len;
-	unsigned int 	total_len;
+	unsigned int	src_len;
+	unsigned int	total_len;
 	unsigned int	i;
 
 	dest_len = 0;
@@ -36,21 +36,22 @@ unsigned int	ft_strlcat(char *dest, char *src, unsigned int size)
 		}
 		dest[dest_len] = '\0';
 	}
-	return total_len;
+	return (total_len);
 }
 /*
 #include <stdio.h>
 #include <string.h>
-int main() {
-    char dest[20] = "Hello";
-    char src[] = ", World!";
-    unsigned int size = 20;
 
-    unsigned int result = strlcat(dest, src, size);
+int	main(void) {
+	char dest[20] = "Hello";
+	char src[] = ", World!";
+	unsigned int size = 20;
 
-    printf("Concatenated string: %s\n", dest);
-    printf("Total length: %u\n", result);
+	unsigned int result = strlcat(dest, src, size);
 
-    return 0;
+	printf("Concatenated string: %s\n", dest);
+	printf("Total length: %u\n", result);
+
+	return (0);
 }
 //*/

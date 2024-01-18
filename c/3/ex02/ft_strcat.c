@@ -10,31 +10,33 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-char	*ft_strcat(char *dest, char*src)
+char	*ft_strcat(char *dest, char *src)
 {
-	char*	ptr;
+	char	*ptr;
 
 	ptr = dest;
-	while(*ptr != '\0')
+	while (*ptr != '\0')
 		ptr++;
-	while(*src != '\0'){
+	while (*src != '\0')
+	{
 		*ptr = *src;
 		ptr++;
 		src++;
 	}
 	*ptr = '\0';
-	return(dest);
+	return (dest);
 }
 /*
 #include <stdio.h>
-int main() {
-    char dest[20] = "Hello";
-    char src[] = ", World!";
 
-    ft_strcat(dest, src);
+int	main(void) {
+	char dest[20] = "Hello";
+	char src[] = ", World!";
 
-    printf("Concatenated string: %s\n", dest);
+	ft_strcat(dest, src);
 
-    return 0;
+	printf("Concatenated string: %s\n", dest);
+
+	return (0);
 }
 //*/
