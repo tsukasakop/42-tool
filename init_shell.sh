@@ -12,5 +12,5 @@ alias 42home='cd '$FT_HOME
 alias 42cc='cc -Wall -Wextra -Werror -fsanitize=address'
 alias 42norm='norminette -R CheckForbiddenSourceHeader'
 
-alias ll='ls -ltrG'
+alias ll='ls -ltarG'
 alias lr='ls -lR'
