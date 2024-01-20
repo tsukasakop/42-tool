@@ -2,3 +2,5 @@
 *.DS_Store
 *.pdf
 c_formatter_42.vim
+.*.swp
+tmp/*
