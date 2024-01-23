@@ -1,2 +1,9 @@
-:syntax on
-:set number
+set number
+syntax on
+set ruler
+set list
+set listchars=tab:>-
+au BufWrite *.c :Stdheader
+
+let g:user42 = 'tkondo'
+let g:mail42 = 'tkondo@student.42.fr'
