@@ -1,9 +1,16 @@
+" add below line on ~/.vimrc
+" source $FT_TOOL/.myvimrc
+
+" line no
 set number
-syntax on
 set ruler
+
+" visualize
+syntax on
 set list
 set listchars=tab:>-
-au BufWrite *.c :Stdheader
 
+" header setting
+au BufWrite *.c :Stdheader
 let g:user42 = 'tkondo'
 let g:mail42 = 'tkondo@student.42.fr'
