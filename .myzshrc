@@ -1,3 +1,7 @@
+# add below 2 lines to ~/.zshrc
+# export FT_TOOL="path/to/this/repository"
+# source "$FT_TOOL/.myzshrc"
+
 # Environment Variales
 # export FT_HOME=`realpath $0 | xargs dirname`
 
