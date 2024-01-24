@@ -13,8 +13,8 @@ git_status() {
 }
 COLOR_DEF='%f'
 COLOR_DIR='%F{13}'
-COLOR_GIT_LABEL='%F{82}'
-COLOR_GIT='%F{186}'
+COLOR_GIT_LABEL='%F{112}'
+COLOR_GIT='%F{11}'
 NEWLINE=$'\n'
 setopt PROMPT_SUBST
 export PROMPT='${COLOR_DIR}%d ${COLOR_GIT_LABEL}$(label_git_lhs)${COLOR_GIT}$(parse_git_branch)${COLOR_GIT_LABEL}$(label_git_rhs)$(git_status)${COLOR_DEF}${NEWLINE}%% '
