@@ -13,5 +13,6 @@ alias lra='ls -lRa'
 alias 42home='cd '$FT_HOME
 alias 42url=$FT_HOME'/open_url.sh'
 alias 42cc='cc -Wall -Wextra -Werror -fsanitize=address'
+alias 42ce='f(){cc -Wall -Wextra -Werror -fsanitize=address $@ &&./a.out && rm ./a.out;}; f'
 alias 42norm='norminette -R CheckForbiddenSourceHeader'
 # alias 42work
