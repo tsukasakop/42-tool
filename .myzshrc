@@ -6,6 +6,8 @@
 # export FT_HOME=`realpath $0 | xargs dirname`
 
 # Aliases
+alias rm='open'
+
 alias ll='ls -alG'
 alias lr='ls -lR'
 alias lra='ls -lRa'
