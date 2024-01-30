@@ -11,6 +11,7 @@ alias lr='ls -lR'
 alias lra='ls -lRa'
 
 alias 42cd='cd $FT_TOOL && cd ..'
+alias 42cdt='cd $FT_TOOL && cd ../tmp'
 alias 42ur=$FT_TOOL'/open_url.sh'
 alias 42cc='cc -Wall -Wextra -Werror -fsanitize=address'
 alias 42cce='f(){cc -Wall -Wextra -Werror -fsanitize=address $@ &&./a.out && rm ./a.out;}; f'
