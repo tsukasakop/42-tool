@@ -9,6 +9,7 @@ set ruler
 syntax on
 set list
 set listchars=tab:>-
+set tabstop=4
 
 " header setting
 au BufWrite *.c :Stdheader
