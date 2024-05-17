@@ -12,15 +12,13 @@ alias lra='ls -lRa'
 
 alias 42cd='cd $FT_TOOL && cd ..'
 alias 42cc='cc -Wall -Wextra -Werror -fsanitize=address'
-alias 42cce='f(){42cc $@ &&./a.out && rm ./a.out;}; f'
+alias 42cce='f(){$@ &&./a.out && rm ./a.out;}; f'
 alias 42nmh='norminette -R CheckDefine'
 alias 42nmc='norminette -R CheckForbiddenSourceHeader'
 alias 42nm='norminette -R CheckForbiddenSourceHeader -R CheckDefine'
 
-# Define the url function
-url() {
-  open $(jq -r --arg key "$1" '.[$key] // empty' "${FT_TOOL}/url.json")
-}
-
-url-v(){vim ${FT_TOOL}/url.json}
+# url function
+url() {open $(jq -r --arg key "$1" '.[$key] // empty' "${FT_TOOL}/url.json")}
+url-l(){less ${FT_TOOL}/url.json}
+url-a(){jq '. + {"'$1'": "'$2'"}' ${FT_TOOL}/url.json > ${FT_TOOL}/tmp.json && mv ${FT_TOOL}/tmp.json ${FT_TOOL}/url.json}
 42reboot(){echo "/reboot c${1:0:1}r${1:1:1}s${1:2:1}" | pbcopy; url reboot}
