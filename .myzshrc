@@ -46,3 +46,4 @@ url() {
   fi
 }
 
+url-v(){vim ${FT_TOOL}/url.json}
