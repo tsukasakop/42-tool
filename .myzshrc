@@ -6,45 +6,21 @@
 # export FT_HOME=`realpath $0 | xargs dirname`
 
 # Aliases
-alias rm='open'
-
 alias ll='ls -alG'
 alias lr='ls -lR'
 alias lra='ls -lRa'
 
 alias 42cd='cd $FT_TOOL && cd ..'
-alias 42cdt='cd $FT_TOOL && cd ../tmp'
 alias 42cc='cc -Wall -Wextra -Werror -fsanitize=address'
-alias 42cce='f(){cc -Wall -Wextra -Werror -fsanitize=address $@ &&./a.out && rm ./a.out;}; f'
-alias 42nmh=' norminette -R CheckDefine'
+alias 42cce='f(){42cc $@ &&./a.out && rm ./a.out;}; f'
+alias 42nmh='norminette -R CheckDefine'
 alias 42nmc='norminette -R CheckForbiddenSourceHeader'
 alias 42nm='norminette -R CheckForbiddenSourceHeader -R CheckDefine'
 
 # Define the url function
 url() {
-  key="$1"
-  json_file="${FT_TOOL}/url.json"
-
-  if [ -z "$key" ]; then
-    echo "Error: No key provided." >&2
-    return 1
-  fi
-
-  if [ ! -f "$json_file" ]; then
-    echo "Error: JSON file not found at $json_file." >&2
-    return 1
-  fi
-
-  url=$(jq -r --arg key "$key" '.[$key] // empty' "$json_file")
-
-  if [ -n "$url" ]; then
-    echo "Opening URL: $url"
-    open "$url"
-  else
-    echo "Error: No URL found for key: $key" >&2
-    return 1
-  fi
+  open $(jq -r --arg key "$1" '.[$key] // empty' "${FT_TOOL}/url.json")
 }
 
 url-v(){vim ${FT_TOOL}/url.json}
-42reboot(){echo "/reboot c${1:0:1}r${1:1:1}s${1:2:1}" | pbcopy; url reboot;}
+42reboot(){echo "/reboot c${1:0:1}r${1:1:1}s${1:2:1}" | pbcopy; url reboot}
