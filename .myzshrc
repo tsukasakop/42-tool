@@ -6,7 +6,6 @@
 # export FT_HOME=`realpath $0 | xargs dirname`
 
 # Aliases
-alias rm='open'
 
 alias ll='ls -alG'
 alias lr='ls -lR'
@@ -20,3 +19,6 @@ alias 42cce='f(){cc -Wall -Wextra -Werror -fsanitize=address $@ &&./a.out && rm 
 alias 42nmh=' norminette -R CheckDefine'
 alias 42nmc='norminette -R CheckForbiddenSourceHeader'
 alias 42nm='norminette -R CheckForbiddenSourceHeader -R CheckDefine'
+
+alias cookie='python3 $FT_TOOL/cookie.py'
+
