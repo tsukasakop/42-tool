@@ -9,8 +9,15 @@ set ruler
 syntax on
 set list
 set listchars=tab:>-
+set tabstop=4
 
 " header setting
 au BufWrite *.c :Stdheader
+au BufWrite *.h :Stdheader
+au BufWrite Makefile :Stdheader
 let g:user42 = 'tkondo'
 let g:mail42 = 'tkondo@student.42.fr'
+
+" Insert single char at cursor position
+nnoremap <C-i> i <ESC>r
+nnoremap <C-a> a <ESC>r
