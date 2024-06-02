@@ -11,8 +11,6 @@ alias lr='ls -lR'
 alias lra='ls -lRa'
 
 alias 42cd='cd $FT_TOOL && cd ..'
-alias 42cc='cc -Wall -Wextra -Werror -fsanitize=address'
-alias 42cce='f(){$@ &&./a.out && rm ./a.out;}; f'
 alias 42nmh='norminette -R CheckDefine'
 alias 42nmc='norminette -R CheckForbiddenSourceHeader'
 alias 42nm='norminette -R CheckForbiddenSourceHeader -R CheckDefine'
