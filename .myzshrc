@@ -17,6 +17,18 @@ alias 42nmh='norminette -R CheckDefine'
 alias 42nmc='norminette -R CheckForbiddenSourceHeader'
 alias 42nm='norminette -R CheckForbiddenSourceHeader -R CheckDefine'
 
+# cc utils
+alias ccw='cc -Wall -Wextra -Werror'
+alias ccf='cc -Wall -Wextra -Werror -fsanitize=address'
+cce()
+{
+    cat | eval "${CC:-cc} -x c -" || return $?
+    ./a.out
+    local st=$?
+    rm ./a.out
+    return st
+}
+
 # url function
 url() {open $(jq -r --arg key "$1" '.[$key] // empty' "${FT_TOOL}/url.json")}
 url-l(){less ${FT_TOOL}/url.json}
