@@ -30,6 +30,8 @@ alias normd='norminette -R CheckDefine'
 alias normh='norminette -R CheckForbiddenSourceHeader'
 alias norma='norminette -R CheckForbiddenSourceHeader -R CheckDefine'
 
+alias cookie='python3 $FT_TOOL/cookie.py'
+
 # url function
 url() {open $(jq -r --arg key "$1" '.[$key] // empty' "${FT_TOOL}/url.json")}
 url-l() {less ${FT_TOOL}/url.json}
