@@ -11,6 +11,9 @@ set list
 set listchars=tab:>-
 set tabstop=4
 
+" search
+set ic hls is
+
 " header setting
 au BufWrite *.c :Stdheader
 au BufWrite *.h :Stdheader
