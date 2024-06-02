@@ -5,17 +5,12 @@
 # Environment Variales
 # export FT_HOME=`realpath $0 | xargs dirname`
 
-# Aliases
+# ls
 alias ll='ls -alG'
 alias lr='ls -lR'
 alias lra='ls -lRa'
 
-alias 42cd='cd $FT_TOOL && cd ..'
-alias 42nmh='norminette -R CheckDefine'
-alias 42nmc='norminette -R CheckForbiddenSourceHeader'
-alias 42nm='norminette -R CheckForbiddenSourceHeader -R CheckDefine'
-
-# cc utils
+# cc
 alias ccw='cc -Wall -Wextra -Werror'
 alias ccf='cc -Wall -Wextra -Werror -fsanitize=address'
 cce()
@@ -27,11 +22,23 @@ cce()
     return st
 }
 
+# git
+git-extract() {git show $1:$2 > $2}
+
+# norminette
+alias normd='norminette -R CheckDefine'
+alias normh='norminette -R CheckForbiddenSourceHeader'
+alias norma='norminette -R CheckForbiddenSourceHeader -R CheckDefine'
+
 # url function
 url() {open $(jq -r --arg key "$1" '.[$key] // empty' "${FT_TOOL}/url.json")}
-url-l(){less ${FT_TOOL}/url.json}
-url-a(){jq '. + {"'$1'": "'$2'"}' ${FT_TOOL}/url.json > ${FT_TOOL}/tmp.json && mv ${FT_TOOL}/tmp.json ${FT_TOOL}/url.json}
-42reboot(){echo "/reboot c${1:0:1}r${1:1:1}s${1:2:1}" | pbcopy; url reboot}
+url-l() {less ${FT_TOOL}/url.json}
+url-a() {jq '. + {"'$1'": "'$2'"}' ${FT_TOOL}/url.json > ${FT_TOOL}/tmp.json && mv ${FT_TOOL}/tmp.json ${FT_TOOL}/url.json}
 
-# git function
-git-extract(){git show $1:$2 > $2}
+# 42 utils
+alias 42cd='cd $FT_TOOL && cd ..'
+42reboot()
+{
+    echo "/reboot c${1:0:1}r${1:1:1}s${1:2:1}" | pbcopy
+    open "https://discord.com/channels/691903146909237289/1011095728191459449"
+}
