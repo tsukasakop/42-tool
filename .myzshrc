@@ -13,10 +13,10 @@ alias lra='ls -lRa'
 # cc
 alias ccw='cc -Wall -Wextra -Werror'
 alias ccf='cc -Wall -Wextra -Werror -fsanitize=address'
-cce() {cat | eval "${CC:-cc} -x c -" && ./a.out}
+cce() {eval "${CC:-cc} -x c -" && ./a.out}
 cct()
 {
-    cat | eval "${CC:-cc} -x c -" || return $?
+    eval "${CC:-cc} -x c -" || return $?
     ./a.out
     local st=$?
     rm ./a.out
