@@ -13,15 +13,26 @@ alias lra='ls -lRa'
 # cc
 alias ccw='cc -Wall -Wextra -Werror'
 alias ccf='cc -Wall -Wextra -Werror -fsanitize=address'
-cce() {eval "${CC:-cc} -x c -" && ./a.out}
-cct()
+cce()
 {
-    eval "${CC:-cc} -x c -" || return $?
+    local src="int main()\n{\n    $(cat)\n}"
+    local ulib=$(echo ${USER_LIB} | awk -F'[ ,]+' '{for (i=1; i<=NF; i++) print $i}' | xargs -L 1 -I _ echo "#include \"_.h\"")
+    local slib=$(echo ${STD_LIB:-fcntl stdio stdlib unistd} | awk -F'[ ,]+' '{for (i=1; i<=NF; i++) print $i}' | xargs -L 1 -I _ echo "#include <_.h>")
+
+    echo "---------------  SOURCE  -----------------"
+    echo "${ulib}\n${slib}\n${src}"
+    echo "${ulib}\n${slib}\n${src}" | eval "${CC:-cc} -x c -" || return $?
+    echo "---------------  OUTPUT  ----------------"
     ./a.out
+}
+ccr()
+{
+    cce
     local st=$?
     rm ./a.out
     return st
 }
+ccp() { echo "printf($(cat));" | ccr }
 
 # git
 git-extract() {git show $1:$2 > $2}
