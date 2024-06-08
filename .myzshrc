@@ -13,26 +13,29 @@ alias lra='ls -lRa'
 # cc
 alias ccw='cc -Wall -Wextra -Werror'
 alias ccf='cc -Wall -Wextra -Werror -fsanitize=address'
-cce()
+ccx()
 {
-    local src="int main()\n{\n    $(cat)\n}"
+    local ts=$(date "+%Y-%m-%dT%H:%M:%S")
+
+    local CC=${CC:-/usr/bin/cc}
+    local SRC=${SRC:-/tmp/${ts}.c}
+    local OBJ=${OBJ:-/tmp/a.out}
+
+    local shebang="/${CC} ${CFLAGS} \$0 -o ${OBJ} && ${OBJ}; exit"
+
     local ulib=$(echo ${USER_LIB} | awk -F'[ ,]+' '{for (i=1; i<=NF; i++) print $i}' | xargs -L 1 -I _ echo "#include \"_.h\"")
     local slib=$(echo ${STD_LIB:-fcntl stdio stdlib unistd} | awk -F'[ ,]+' '{for (i=1; i<=NF; i++) print $i}' | xargs -L 1 -I _ echo "#include <_.h>")
 
+    local main="int main(int argc, char** argv)\n{\n$(cat)\n(void)argc;\n(void)argv;\n}"
+
+    echo "${shebang}\n${ulib}\n${slib}\n${main}" > ${SRC}
+    chmod +x ${SRC}
     echo "---------------  SOURCE  -----------------"
-    echo "${ulib}\n${slib}\n${src}"
-    echo "${ulib}\n${slib}\n${src}" | eval "${CC:-cc} -x c -" || return $?
+    cat ${SRC}
     echo "---------------  OUTPUT  ----------------"
-    ./a.out
+    ${SRC}
 }
-ccr()
-{
-    cce
-    local st=$?
-    rm ./a.out
-    return st
-}
-ccp() { echo "printf($(cat));" | ccr }
+ccp() { echo "printf($(cat));" | ccx }
 
 # git
 git-extract() {git show $1:$2 > $2}
