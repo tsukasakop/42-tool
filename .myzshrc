@@ -11,8 +11,10 @@ alias lr='ls -lR'
 alias lra='ls -lRa'
 
 # cc
-alias ccw='cc -Wall -Wextra -Werror'
-alias ccf='cc -Wall -Wextra -Werror -fsanitize=address'
+export CFLAG_WARN="-Wall -Werror -Wextra"
+export CFLAG_ADDRESS="-fsanitize=address"
+alias ccw="cc ${CFLAG_WARN}"
+alias ccf="cc ${CFLAG_WARN} ${CFLAG_ADDRESS}"
 ccx()
 {
     local ts=$(date "+%Y-%m-%dT%H:%M:%S")
