@@ -24,14 +24,14 @@ ccx()
     local OBJ=${OBJ:-/tmp/a.out}
 
     echo -E "/${CC} ${CFLAGS} \$0 -o ${OBJ} && ${OBJ}; exit" >> ${SRC}
-
+    echo "" >> ${SRC}
     echo ${USER_LIB} | awk -F'[ ,]+' '{for (i=1; i<=NF; i++) print $i}' | xargs -L 1 -I _ echo "#include \"_.h\"" >> ${SRC}
     echo ${STD_LIB:-fcntl stdio stdlib unistd} | awk -F'[ ,]+' '{for (i=1; i<=NF; i++) print $i}' | xargs -L 1 -I _ echo "#include <_.h>" >> ${SRC}
-
+    echo "" >> ${SRC}
     echo "int main(int argc, char** argv)\n{" >> ${SRC}
+    cat | while IFS= read -r line; do echo -E "	$line"; done >> ${SRC}
     cat >> ${SRC}
-    echo "(void)argc;\n(void)argv;\n}" >> ${SRC}
-
+    echo "\t(void)argc;\n\t(void)argv;\n}" >> ${SRC}
 
     chmod +x ${SRC}
     echo "---------------  SOURCE  -----------------"
@@ -39,7 +39,7 @@ ccx()
     echo "---------------  OUTPUT  ----------------"
     ${SRC}
 }
-ccp() { cat | while IFS= read -r line; do echo -E "	printf($line);"; done | ccx }
+ccp() { cat | while IFS= read -r line; do echo -E "printf($line);"; done | ccx }
 
 # git
 git-extract() {git show $1:$2 > $2}
