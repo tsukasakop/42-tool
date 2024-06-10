@@ -15,7 +15,10 @@ def spell(base_time=time.time(), sleep_time=10, duration=400, times=float("inf")
                 print(time.time(),  "sleep")
                 time.sleep(sleep_time)
 
-def max_efficient_cookie(s=None ,fever=True):
+def max_efficient_cookie(s=None ,ratio=7, second=30*60, limit=0.15):
+    ratio=float(ratio)
+    second=float(second)
+    limit=float(limit)
     cps = None
     while cps is None:
         try:
@@ -23,16 +26,16 @@ def max_efficient_cookie(s=None ,fever=True):
         except:
             s = input("type CpS: ")
 
-    n = 60 * 30 * cps * (7 if fever else 1) / 0.15
-    while(n > 1000):
-        n/=1000
+    needed = cps * ratio * second / limit
+    while(needed > 1000):
+        needed /= 1000
 
-    gain = n * 0.15 
-    print(f"store {n:.4g} cookies to gain {gain:.4g} cookies")
+    gain = needed * limit
+    print(f"store {needed:.4g} cookies to gain {gain:.4g} cookies")
 
 if __name__ == "__main__":
-    if len(sys.argv) == 2:
-        max_efficient_cookie(sys.argv[1])
+    if len(sys.argv) >= 2:
+        max_efficient_cookie(*sys.argv[1:])
     else:
         max_efficient_cookie()
 
