@@ -23,14 +23,16 @@ ccx()
     local SRC=${SRC:-/tmp/${ts}.c}
     local OBJ=${OBJ:-/tmp/a.out}
 
-    local shebang="/${CC} ${CFLAGS} \$0 -o ${OBJ} && ${OBJ}; exit"
+    echo -E "/${CC} ${CFLAGS} \$0 -o ${OBJ} && ${OBJ}; exit" >> ${SRC}
 
-    local ulib=$(echo ${USER_LIB} | awk -F'[ ,]+' '{for (i=1; i<=NF; i++) print $i}' | xargs -L 1 -I _ echo "#include \"_.h\"")
-    local slib=$(echo ${STD_LIB:-fcntl stdio stdlib unistd} | awk -F'[ ,]+' '{for (i=1; i<=NF; i++) print $i}' | xargs -L 1 -I _ echo "#include <_.h>")
+    echo ${USER_LIB} | awk -F'[ ,]+' '{for (i=1; i<=NF; i++) print $i}' | xargs -L 1 -I _ echo "#include \"_.h\"" >> ${SRC}
+    echo ${STD_LIB:-fcntl stdio stdlib unistd} | awk -F'[ ,]+' '{for (i=1; i<=NF; i++) print $i}' | xargs -L 1 -I _ echo "#include <_.h>" >> ${SRC}
 
-    local main="int main(int argc, char** argv)\n{\n$(cat)\n(void)argc;\n(void)argv;\n}"
+    echo "int main(int argc, char** argv)\n{" >> ${SRC}
+    cat >> ${SRC}
+    echo "(void)argc;\n(void)argv;\n}" >> ${SRC}
 
-    echo "${shebang}\n${ulib}\n${slib}\n${main}" > ${SRC}
+
     chmod +x ${SRC}
     echo "---------------  SOURCE  -----------------"
     cat ${SRC}
