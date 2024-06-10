@@ -39,7 +39,7 @@ ccx()
     echo "---------------  OUTPUT  ----------------"
     ${SRC}
 }
-ccp() { echo "printf($(cat));" | ccx }
+ccp() { cat | while IFS= read -r line; do echo -E "	printf($line);"; done | ccx }
 
 # git
 git-extract() {git show $1:$2 > $2}
