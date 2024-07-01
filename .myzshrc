@@ -22,7 +22,7 @@ ccx()
     local CC=${CC:-/usr/bin/cc}
     local SRC=${SRC:-/tmp/${ts}.c}
     local OBJ=${OBJ:-/tmp/a.out}
-    local CFLAGS=$(echo ${CFLAGS} | sed -E "s|(-[LI])\.|\1$(pwd)|g")
+    local CFLAGS=$(echo ${CFLAGS} | sed -E "s|(-[LI])|\1$(pwd)/|g")
     echo -E "/${CC} ${CFLAGS} \$0 -o ${OBJ} && ${OBJ}; exit" >> ${SRC}
     echo "" >> ${SRC}
     echo ${USER_LIB} | awk -F'[ ,]+' '{for (i=1; i<=NF; i++) print $i}' | xargs -L 1 -I _ echo "#include \"_.h\"" >> ${SRC}
