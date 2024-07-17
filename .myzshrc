@@ -38,6 +38,8 @@ ccx()
     cat ${SRC}
     echo "---------------  OUTPUT  ----------------"
     ${SRC}
+    echo "-----------------------------------------"
+    echo "saved as: ${SRC}"
 }
 ccp() { cat | while IFS= read -r line; do echo -E "printf($line);"; done | ccx }
 
